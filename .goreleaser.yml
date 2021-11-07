@@ -1,0 +1,30 @@
+project_name: linode-ddns
+
+env:
+  - GO111MODULE=on
+  - CGO_ENABLED=0
+
+before:
+  hooks:
+    - go mod download
+
+builds:
+- id: linode-ddns
+  binary: linode-ddns
+  main: main.go
+  gcflags:
+    - all=-trimpath={{.Env.GOPATH}};{{.Env.PWD}}
+  goos:
+    - linux
+  goarch:
+    - amd64
+    - arm64
+  goarm:
+    - 6
+    - 7
+  ignore:
+    - goos: linux
+      goarch: 386
+
+changelog:
+  skip: true
