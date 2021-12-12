@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"linode-ddns/pkg/client"
+	"linode-ddns/pkg/client_linode"
 
 	"github.com/spf13/cobra"
 )
@@ -10,12 +10,11 @@ var (
 	record       int
 	ip           string
 	linodeClient = &cobra.Command{
-		Use:   "linode client",
+		Use:   "linode",
 		Short: "linode",
 		Long:  "linode provides the command line to update domains",
 		RunE: func(cmd *cobra.Command, args []string) error {
-
-			return client.Client(cmd.Context(), apiKey, debug, record, ip)
+			return client_linode.Client(cmd.Context(), apiKey, debug, record, ip)
 		},
 	}
 )

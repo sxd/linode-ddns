@@ -1,8 +1,9 @@
-package client
+package client_linode
 
 import (
 	"context"
 	"fmt"
+	"linode-ddns/pkg/client_ifconfig"
 	"net/http"
 	"os"
 
@@ -129,6 +130,9 @@ func (d *Domains) printDomains() {
 	var rows []table.Row
 	for _, domain := range d.Domains {
 		for _, record := range domain.Records {
+			if record.ID == 0 {
+				continue
+			}
 			rows = append(rows, table.Row{
 				domain.ID,
 				domain.Name,
@@ -164,6 +168,16 @@ func Client(ctx context.Context, apiKey string, debug bool, recordID int, newIP 
 		return nil
 	}
 
+	// This means that we should auto-discover the IP address
+	if recordID != 0 && newIP == "" {
+		ip, e := client_ifconfig.GetIP(ctx)
+		if e != nil {
+			return e
+		}
+
+		newIP = ip.GetString()
+	}
+
 	// The user will pass the recordID we also need the ID
 	domainID, err := domains.getDomainIDbyRecordID(recordID)
 	if err != nil {
@@ -171,7 +185,5 @@ func Client(ctx context.Context, apiKey string, debug bool, recordID int, newIP 
 	}
 
 	// Update the domain
-	err = domains.updateDomain(ctx, domainID, recordID, newIP)
-
-	return err
+	return domains.updateDomain(ctx, domainID, recordID, newIP)
 }

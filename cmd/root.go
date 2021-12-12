@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"fmt"
-	"linode-ddns/pkg/client"
+	"linode-ddns/pkg/client_linode"
 	"os"
 
 	"github.com/spf13/cobra"
@@ -16,12 +16,12 @@ var (
 
 	rootCmd = &cobra.Command{
 		Use:   "linode-ddns",
-		Short: "linode-ddns provides a client to update domains",
-		Long: `linode-ddns provides a client to update domains and 
+		Short: "linode-ddns provides a client_linode to update domains",
+		Long: `linode-ddns provides a client_linode to update domains and 
 also can run in daemon mode to update the record automatically`,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if domains {
-				return client.Client(cmd.Context(), apiKey, debug, 0, "")
+				return client_linode.Client(cmd.Context(), apiKey, debug, 0, "")
 			}
 			return nil
 		},
