@@ -7,7 +7,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+  IMAGE_NAME: ${{ github.repository }},
 
 jobs:
   golangci:
@@ -18,8 +18,13 @@ jobs:
         name: Checkout Source Code
         uses: actions/checkout@v2.4.0
       -
+        name: Install Go Package
+        uses: actions/setup-go@v2.1.3
+        with:
+          go-version: "1.17.x"
+      -
         name: Run Linters
-        uses: golangci/golangci-lint-action@v2.5.2
+        uses: golangci/golangci-lint-action@v3
         with:
           version: "v1.43.0"
           args: --timeout 4m
