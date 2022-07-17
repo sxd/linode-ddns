@@ -1,12 +1,12 @@
 module linode-ddns
 
-go 1.17
+go 1.18
 
 require (
-	github.com/jedib0t/go-pretty/v6 v6.2.4
-	github.com/linode/linodego v1.2.1
-	github.com/spf13/cobra v1.3.0
-	golang.org/x/oauth2 v0.0.0-20211104180415-d3ed0bb246c8
+	github.com/jedib0t/go-pretty/v6 v6.3.5
+	github.com/linode/linodego v1.8.1
+	github.com/spf13/cobra v1.5.0
+	golang.org/x/oauth2 v0.0.0-20220630143837-2104d58473e0
 )
 
 require (
@@ -16,8 +16,9 @@ require (
 	github.com/mattn/go-runewidth v0.0.13 // indirect
 	github.com/rivo/uniseg v0.2.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
-	golang.org/x/net v0.0.0-20211029224645-99673261e6eb // indirect
-	golang.org/x/sys v0.0.0-20211205182925-97ca703d548d // indirect
+	golang.org/x/net v0.0.0-20220708220712-1185a9018129 // indirect
+	golang.org/x/sys v0.0.0-20220715151400-c0bba94af5f8 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
-	google.golang.org/protobuf v1.27.1 // indirect
+	google.golang.org/protobuf v1.28.0 // indirect
+	gopkg.in/ini.v1 v1.66.6 // indirect
 )
